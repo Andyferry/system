@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tu Proyecto</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap"
+      rel="stylesheet" />
+    <!-- Font Awesome para los íconos minimalistas -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  </head>
+  <body>
+    <div class="dashboard" [ngClass]="selectedTheme">
+      <!-- Cabecera de navegación -->
+
+      <header class="navbar">
+        <!-- Izquierda: Menú de navegación (desktop) o botón hamburguesa (mobile) -->
+        <div class="nav-left">
+          <!-- Botón hamburguesa visible en mobile -->
+          <div class="hamburger" (click)="mobileMenuOpen = !mobileMenuOpen">
+            <img src="menu.svg" alt="Menú" class="icon-img" />
+          </div>
+          <!-- Menú completo visible en desktop -->
+          <nav class="nav-primary desktop-menu">
+            <ul role="menubar">
+              <li role="presentation" routerLinkActive="seleccionado"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="'/inicio'" role="menuitem"
+                  (click)="cerrarMenu('Inicio')">
+                  Inicio
+                </a>
+              </li>
+              <li role="presentation" routerLinkActive="seleccionado"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="'/ropa'" role="menuitem"
+                  (click)="cerrarMenu('Reservar')">
+                  Reservar
+                </a>
+              </li>
+              <li role="presentation" routerLinkActive="seleccionado"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="'/maquillaje'" role="menuitem"
+                  (click)="cerrarMenu('Reservar')">
+                  Servicios
+                </a>
+              </li>
+              <li role="presentation" routerLinkActive="seleccionado"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="'/hogar'" role="menuitem"
+                  (click)="cerrarMenu('Servicios')">
+                  Sobre Nosotros
+                </a>
+              </li>
+              
+
+            </ul>
+          </nav>
+        </div>
+        <!-- Centro: Logo de la empresa -->
+        <div class="nav-center">
+
+        </div>
+        <!-- Derecha: Buscador y otros íconos -->
+        <div class="nav-right">
+          <!-- Bloque 1: Logo -->
+          <div class="logo-container">
+            <img [routerLink]="'/inicio'"
+              src="https://i.postimg.cc/vZm2Scz3/pngwing-com-3.png"
+              alt="Logo"
+              class="company-logo" />
+          </div>
+
+          <!-- Bloque 2: Buscador -->
+          <!-- Reemplazo del buscador con GIFs animados -->
+          <!-- Reemplazo del buscador con GIFs animados + efecto hover -->
+    
+
+          <div class="gif-container">
+            <img src="https://i.postimg.cc/5yq8fSxL/tortugados.png"
+              alt="Tortuga" />
+            <img
+              src="https://i.postimg.cc/0NFYnNWM/foca.png"
+              alt="Foca" />
+            <img
+              src="https://i.postimg.cc/yY8DJHjw/focados.png"
+              alt="Cangrejo" />
+            <img src="https://i.postimg.cc/HsdQBR22/playauno.png"
+              alt="Pingüino" />
+              <img src="https://i.postimg.cc/g2rL7W6v/tortuga-uno.png"
+              alt="Pingüinos" />
+          </div>
+
+          <!-- Bloque 3: Íconos -->
+
+          <div class="icons-container">
+            <div class="icon-container">
+              <img (click)="metodomostrarbarra()" src="map.svg" alt="Buscar"
+                class="icon-img" />
+
+            </div>
+
+            <div class="icon-container">
+              <img src="mensaje.svg" alt="Bolsa de compras" class="icon-img" />
+
+            </div>
+
+            <div *ngIf="!authService.isLoggedIn()" class="icon-container">
+              <img [routerLink]="'/loguin'" src="user.svg" alt="Usuario"
+                class="icon-img" />
+              
+            </div>
+            <div *ngIf="authService.isLoggedIn()" class="user-menu-container"
+              (click)="toggleDropdown()">
+              <img src="adjustments.svg" alt="Configuración" class="icon-img" />
+              <div *ngIf="authService.isLoggedIn() && showDropdown"
+                class="user-dropdown show">
+
+
+                <a [routerLink]="'/tiketback'">
+                  <img src="https://img.freepik.com/foto-gratis/vista-superior-mujer-escribiendo-computadora-portatil_23-2150062348.jpg?t=st=1745444543~exp=1745448143~hmac=9ac0172c2ec87857d9396fa1ebf6e1a0532bc1ea8bd78c8f3a5604cd36eceec9&w=740"
+                    alt="Administrar Tikets" />
+                  Generar Tikets
+                </a>
+                <a [routerLink]="'/viaje'">
+                  <img src="https://img.freepik.com/foto-gratis/vista-superior-mujer-escribiendo-computadora-portatil_23-2150062348.jpg?t=st=1745444543~exp=1745448143~hmac=9ac0172c2ec87857d9396fa1ebf6e1a0532bc1ea8bd78c8f3a5604cd36eceec9&w=740"
+                    alt="Administrar Accesorios" />
+                  Admin viajes
+                </a>
+                <a [routerLink]="'/cliente'">
+                  <img src="https://img.freepik.com/foto-gratis/hombre-negocios-sentado-escritorio-analizando-papeleo-comercial-trabajando-estrategia-empresa-planificacion-presentacion-gestion-oficina-inicio-empresario-mirando-documentos-marketing_482257-27715.jpg?t=st=1745444528~exp=1745448128~hmac=8a7efabd93f880eedd34e9af090a79011b18b0c144ebc2ec4be85ebd14081f6b&w=740"
+                    alt="Administrar Maquillaje" />
+                  Admin clientes
+                </a>
+                <a [routerLink]="'/usuario'">
+                  <img src="https://img.freepik.com/fotos-premium/hombres-negocios-casuales-que-trabajan-escritorio_13339-3675.jpg?w=740"
+                    alt="Administrar Hogar" />
+                  Admin usuarios
+                </a>
+                <a [routerLink]="'/horario'">
+                  <img src="https://img.freepik.com/foto-gratis/servicio-centro-servidores-que-comprueba-documentacion-supercomputadoras_482257-94487.jpg?t=st=1745444532~exp=1745448132~hmac=3a0182f814c55e09020ff82444b0372778d451a64083799a918d9466ca2d995f&w=740"
+                    alt="Administrar Zapatos" />
+                  Admin horario
+                </a>
+                <a [routerLink]="'/lancha'">
+                  <img src="https://img.freepik.com/foto-gratis/gerente-comercial-que-trabaja-diagramas-mercado-valores-observando-tendencia-estadistica-tiempo-real-beneficio-tasa-cambio-divisas-analizando-indice-fondos-cobertura-inversion-dinero-global-computadora-portatil_482257-50292.jpg?t=st=1745444674~exp=1745448274~hmac=7dedfc4cc44506b560972123099ed1f222ce80ae264a5f5743fd07e712f6b030&w=740"
+                    alt="Administrar Accesorios" />
+                  Admin lancha
+                </a>
+                <a [routerLink]="'/ruta'">
+                  <img src="https://img.freepik.com/foto-gratis/servicio-centro-servidores-que-comprueba-documentacion-supercomputadoras_482257-94487.jpg?t=st=1745444532~exp=1745448132~hmac=3a0182f814c55e09020ff82444b0372778d451a64083799a918d9466ca2d995f&w=740"
+                    alt="Administrar Zapatos" />
+                  Admin ruta
+                </a>
+                <a [routerLink]="'/tiket'">
+                  <img src="https://img.freepik.com/foto-gratis/servicio-centro-servidores-que-comprueba-documentacion-supercomputadoras_482257-94487.jpg?t=st=1745444532~exp=1745448132~hmac=3a0182f814c55e09020ff82444b0372778d451a64083799a918d9466ca2d995f&w=740"
+                    alt="impresion" />
+                Imprimir
+                </a>
+             
+                
+                <a (click)="logout()">
+                  <img src="https://img.freepik.com/foto-gratis/persona-frente-computadora-trabajando-html_23-2150040430.jpg?t=st=1745444460~exp=1745448060~hmac=3275e16b51a1edc036daae18bd9292d18ac629d245b3f96bff3af0bf89ea2a0f&w=740"
+                    alt="Cerrar sesión" />
+                  Cerrar sesión
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </header>
+
+      <!-- Menú móvil (se despliega al hacer clic en el ícono hamburguesa) -->
+      <nav class="mobile-menu" *ngIf="mobileMenuOpen">
+        <ul role="menubar">
+          <!-- Se pueden reutilizar los mismos enlaces del menú original -->
+          <li role="presentation" routerLinkActive="seleccionado2"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/inicio'" role="menuitem"
+              (click)="cerrarMenu('Inicio'); mobileMenuOpen = false">
+              Inicio
+            </a>
+          </li>
+          <li role="presentation" routerLinkActive="seleccionado2"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/ropa'" role="menuitem"
+              (click)="cerrarMenu('Ropa'); mobileMenuOpen = false">
+              Reservas
+            </a>
+          </li>
+          <li role="presentation" routerLinkActive="seleccionado2"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/maquillaje'" role="menuitem"
+              (click)="cerrarMenu('Maquillaje'); mobileMenuOpen = false">
+              Servicios
+            </a>
+          </li>
+          <li role="presentation" routerLinkActive="seleccionado2"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="'/hogar'" role="menuitem"
+              (click)="cerrarMenu('Hogar'); mobileMenuOpen = false">
+              Sobre Nosotros
+            </a>
+          </li>
+         
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+
+  </body>
+</html>

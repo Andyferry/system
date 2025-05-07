@@ -1,0 +1,947 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* Font Awesome Icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+ 
+ 
+}
+
+h1 {
+  color: #ccc;
+  font-weight: 300;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+figure {
+  margin: auto;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  background: white;
+  margin-bottom: 300px;
+}
+
+.content article {
+  padding: 100px 0;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+.content article p {
+  margin-top: 20px;
+}
+
+
+/* Elimina márgenes generales */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.titulo-principal {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+
+}
+
+.subtitulo {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.carrusel-productos {
+  position: relative;
+  overflow: hidden;
+  max-width: 73%;
+  margin: 0 auto;
+  background: linear-gradient(to right, #ff9a8b, #ff6a88, #ff99ac, #ffd3b6);
+}
+
+.carrusel-productos2 {
+  position: relative;
+  overflow: hidden;
+  max-width: 73%;
+  margin: 0 auto;
+  background: linear-gradient(to right, #7b8db5, #a0c0e5, #cfe2f3, #eef7ff);
+}
+
+.contenedor-carrusel {
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.producto {
+  margin-top: 5%;
+  margin-bottom: 4%;
+  max-width: 25%;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.img-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.img-container img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+
+.img-container2 {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.img-container2 img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+
+
+
+
+.descuento {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: crimson;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border-radius: 5px;
+}
+
+.descripcion {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.4rem 0;
+  white-space: normal;
+  /* Permite que el texto se divida en varias líneas */
+  word-wrap: break-word;
+  /* Rompe las palabras largas que no caben */
+  line-height: 1.5;
+  /* Mejora la legibilidad al aumentar el espacio entre líneas */
+  overflow-wrap: break-word !important;
+  /* Asegura que las palabras largas se rompan si es necesario */
+  display: block !important;
+  /* Asegura que el texto fluya bien en múltiples líneas */
+  max-width: 100%;
+  /* Asegura que el texto ocupe todo el ancho disponible */
+}
+
+
+
+.precio {
+  margin-top: 5px;
+}
+
+.precio .actual {
+  font-weight: bold;
+  color: green;
+}
+
+.precio .viejo {
+  text-decoration: line-through;
+  color: #aaa;
+  margin-left: 5px;
+}
+
+.boton {
+  position: absolute;
+  top: 40%;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.boton:first-of-type {
+  left: 0;
+}
+
+.boton:last-of-type {
+  right: 0;
+}
+
+@media (max-width: 900px) {
+  .producto {
+    min-width: 50%;
+  }
+
+  .carrusel-productos {
+    max-width: 100%;
+  }
+
+  .carrusel-productos2 {
+    max-width: 100%;
+  }
+
+  .boton {
+    display: none;
+  }
+
+  .img-container2 img {
+    width: 150%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  body {
+
+    background-size: 60% 10%;
+    /* Hacer la imagen más pequeña */
+    background-repeat: repeat;
+    /* Repetir la imagen */
+    background-position: center center;
+    /* Centrar la imagen */
+    background-attachment: fixed;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Barra de promoción */
+.promo-bar {
+  background: linear-gradient(to right,
+      #ff9a9e,
+      #fad0c4,
+      #81d5f7,
+      #fbc2eb,
+      #a6c1ee);
+  /* Fondo oscuro */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 10px;
+  /* Tamaño no muy alto */
+  position: relative;
+  width: 100%;
+  /* Asegura que ocupe todo el ancho */
+  overflow: hidden;
+  /* Oculta el contenido que se sale de la barra */
+}
+
+/* Contenedor del contenido que se moverá (texto e imagen) */
+.promo-content {
+  display: flex;
+  /* Animación para móviles y desktop */
+  animation: scrollPromo 20s linear infinite;
+  -webkit-animation: scrollPromo 20s linear infinite;
+  will-change: transform;
+}
+
+/* Imagen al lado izquierdo */
+.promo-image {
+  height: 40px;
+  /* Ajusta el tamaño de la imagen */
+  margin-right: 20px;
+  /* Espacio entre la imagen y el texto */
+}
+
+/* Estilo del texto */
+.promo-text {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.5rem;
+  /* Hacer el texto más grande */
+  white-space: nowrap;
+  /* Impide que el texto se divida en varias líneas */
+  display: inline-block;
+  animation: fadeInOut 4s ease-in-out infinite;
+  -webkit-animation: fadeInOut 4s ease-in-out infinite;
+}
+
+/* Animación de desvanecimiento del texto */
+@keyframes fadeInOut {
+  0%, 75% {
+    opacity: 1;
+    /* Aparece completamente y permanece visible */
+  }
+
+  95% {
+    opacity: 0;
+    /* Se desvanece completamente */
+  }
+
+  100% {
+    opacity: 1;
+    /* Vuelve a ser visible */
+  }
+}
+
+@-webkit-keyframes fadeInOut {
+  0%, 75% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Keyframes para el desplazamiento del contenido (uso de translate3d para mejor rendimiento en móviles) */
+@keyframes scrollPromo {
+  0% {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@-webkit-keyframes scrollPromo {
+  0% {
+    -webkit-transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(1, 1);
+  }
+
+  to {
+    -webkit-transform: scale(1.5, 1.5);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(1, 1);
+  }
+
+  to {
+    transform: scale(1.5, 1.5);
+  }
+}
+
+.zoom-img {
+  -webkit-animation: zoom 20s;
+  animation: zoom 20s;
+}
+
+
+/* Controlar el tamaño del carrusel */
+ngb-carousel {
+  height: 400px;
+  /* Ajusta la altura del carrusel */
+  width: 100%;
+  /* El ancho será 100% del contenedor */
+  overflow: hidden;
+  /* Para asegurarse de que las imágenes no se desborden */
+}
+
+/* Controlar las imágenes dentro del carrusel */
+.zoom-img {
+  object-fit: cover;
+  /* Esto hace que la imagen se recorte si es necesario para que cubra todo el contenedor */
+  height: 100%;
+  /* La imagen tendrá la altura total del carrusel */
+  width: 100%;
+  /* La imagen ocupará el 100% del ancho */
+}
+
+/* Si deseas ajustar el tamaño del carrusel de manera más precisa */
+ngb-carousel .carousel-inner {
+  height: 100%;
+  /* Asegura que las imágenes se ajusten correctamente dentro del carrusel */
+
+}
+
+
+
+
+.mimo {
+
+  gap: 20px;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 1% !important;
+  text-align: center;
+  background: #ffffff !important;
+  /* Fondo blanco */
+}
+
+.mimo a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+
+@media (max-width: 1200px) {
+
+
+  .mimo {
+    width: 100%;
+    height: 250px;
+    margin: 0 auto;
+    margin-top: 3% !important;
+    overflow: hidden;
+    /* Para que las imágenes no sobresalgan de los bordes */
+    display: block;
+
+  }
+
+
+}
+@media (min-width: 1200px) {
+
+
+  .mimo {
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 3% !important;
+    overflow: hidden;
+    /* Para que las imágenes no sobresalgan de los bordes */
+    display: block;
+
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+
+  ngb-carousel {
+    height: 250px;
+  }
+}
+
+
+/* ----------------------------- */
+/* Estilos generales para ambos   */
+/* ----------------------------- */
+.menu-carousel {
+  margin: 20px auto;
+  position: relative;
+  background: linear-gradient(to right, #f1c3da, #caa0f5, #fbc2eb);
+
+  padding: 0 1rem;
+  overflow: hidden;
+  /* Para que las imágenes no sobresalgan de los bordes */
+  max-width: 71%;
+}
+
+/* Estilo común a cada card */
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  margin: 50PX !important;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.option-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.category-card h5 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.category-card p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* ----------------------------- */
+/* Desktop Carousel: 3 cards por slide */
+/* ----------------------------- */
+.desktop-carousel {
+  display: block;
+}
+
+.desktop-carousel .desktop-slide {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.desktop-carousel .category-card {
+  max-width: 300px;
+  height: 300px;
+}
+
+/* ----------------------------- */
+/* Mobile Carousel: 1 card por slide */
+/* ----------------------------- */
+.mobile-carousel {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-carousel {
+    display: none;
+  }
+
+  .mobile-carousel {
+    display: block;
+  }
+
+  .mobile-carousel .category-card {
+    width: 90%;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .option-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .category-card h5 {
+    font-size: 18px;
+  }
+
+  .category-card p {
+    font-size: 14px;
+  }
+
+}
+
+.menu-carousel a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+@media (max-width: 1100px) {
+
+
+  .menu-carousel {
+    margin: 1rem auto;
+    padding: 0 1rem;
+
+    overflow: hidden;
+    /* Para que las imágenes no sobresalgan de los bordes */
+    max-width: 93%;
+    min-height: 300PX !important;
+  }
+
+
+
+  /* Estilo común a cada card */
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    margin: 20PX !important;
+  }
+
+}
+
+
+
+
+
+/* Estilos generales del footer */
+footer {
+  background: #222;
+  /* Fondo oscuro elegante */
+  color: #fff;
+  padding: 40px 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Contenedor principal */
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Secciones del footer */
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin: 20px 10px;
+}
+
+.footer-section h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #4340ff;
+  /* Color destacado */
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Estilo de los enlaces */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  text-decoration: none;
+  color: #bbb;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: #2f51af;
+  /* Efecto al pasar el mouse */
+}
+
+/* Contacto */
+.footer-section.contact p {
+  margin: 5px 0;
+}
+
+.footer-section.contact i {
+  color: #235792;
+  margin-right: 8px;
+}
+
+/* Redes Sociales */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #bbb;
+  font-size: 20px;
+  transition: color 0.3s ease, transform 0.2s;
+}
+
+.social-icons a:hover {
+  color: #24668b;
+  transform: scale(1.2);
+  /* Efecto de agrandado */
+}
+
+/* Pie de página inferior */
+.footer-bottom {
+  text-align: center;
+  background: #111;
+  padding: 15px 0;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+.header {
+
+  top: 0;
+  left: 0;
+  height: 530px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #ff0099, #00ccff); /* Fondo degradado */
+  color: #ffffff;
+  z-index: 1000;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.header img {
+  width: 30%; /* Puedes ajustar el tamaño de la imagen aquí */
+  height: auto;
+  object-fit: contain; /* Evita la distorsión, pero permite mantener la calidad */
+}
+
+
+
+/* Contenedor de imagen y título */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Título */
+.titulo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    margin-bottom: 8.5cap;
+    /* Estilo delgado */
+    font-size: 4rem;
+    /* Ajusta según sea necesario */
+    text-transform: uppercase;
+    letter-spacing: 7px;
+    max-width: 90%;
+    background: linear-gradient(to right, #ff0099, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 1;
+    /* Para evitar que el texto se corte en pantallas pequeñas */
+}
+
+  
+.titulo::before {
+    content: "";
+    position: absolute;
+    bottom: 10.5em;
+    left: 50%; /* 👈 empieza desde el centro */
+    transform: translateX(-50%) rotate(-2deg); /* 👈 lo mueve para quedar centrado */
+    
+    width: 45%;
+    height: 0.6em;
+    background: linear-gradient(to right, rgba(104, 187, 255, 0.4), rgba(255, 81, 162, 0.4));
+    border-radius: 8px;
+    z-index: -1;
+    filter: blur(4px);
+    pointer-events: none;
+    display: block;
+  }
+  
+
+/* Imagen al lado izquierdo del título */
+.header img {
+    height: 50px;
+    /* Ajusta el tamaño de la imagen */
+    margin-right: 20px;
+    /* Espacio entre la imagen y el título */
+}
+
+/* Botón de ayuda */
+.btn-ayuda {
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-ayuda i {
+    font-size: 1.2rem;
+}
+
+.btn-ayuda:hover {
+    border-radius: 5px;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 1200px) {
+    .header {
+       
+        top: 0;
+        left: 0;
+        height: 250px;
+        margin-top: 0;
+        background-size: 390px 250px;
+    }
+
+    .titulo {
+        position: relative;
+        font-size: 1.5rem;
+        margin-top: 20cap!important;
+        background: linear-gradient(to right, #ff0099, #ff3366, #00ccff, #3399ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        z-index: 1;
+      }
+      
+      .titulo::before {
+        content: "";
+        position: absolute;
+        bottom: 0.2em;
+        left: 0;
+        width: 100%;
+        height: 0.6em;
+        background: linear-gradient(to right, rgba(104, 187, 255, 0.4),rgba(255, 81, 162, 0.4) );
+        border-radius: 8px;
+        z-index: -1;
+        filter: blur(2px);
+        transform: rotate(-2deg);
+        pointer-events: none;
+      }
+      
+
+    
+}
+
+
+
+
+
+
+

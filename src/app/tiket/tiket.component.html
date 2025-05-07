@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva y Pase de Embarque</title>
+  <!-- FontAwesome para íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div class="app-grid">
+    <!-- Formulario izquierda -->
+    <div class="form-panel">
+      <h2>Reserva tu Ticket</h2>
+      <form id="reservationForm">
+       
+      </form>
+    </div>
+    <!-- Pase de embarque derecha -->
+    <div #ticketDiv class="boarding-pass">
+      <header class="bp-header">
+        <div class="bp-title">Pase de embarque</div>
+
+        <H1></H1>  <img src="logofinalfinall.png" alt="Logo Galápagos Andy 2" class="bp-logoprincipal">
+
+      </header>
+      <div class="bp-main">
+        <aside class="bp-qr">
+          <div class="seq">Seq. 1</div>
+          <img src="https://i.postimg.cc/QtXvDHfF/qr-actualizatec-400x400.png" alt="QR Code">
+        </aside>
+      
+        <!-- Muevo solo la fecha aquí -->
+        <div class="bp-date">
+          <div class="bp-reserv">
+            Código: 
+          </div>
+          <strong>GA2-04567</strong>
+          Miércoles, 23 de abril, 2025
+          
+        </div>
+        
+      </div>
+      
+      <!-- Ahora el resto baja por debajo, fuera de .bp-main -->
+      <section class="bp-boat">
+        <div class="bp-route">
+          <span class="code from">SCZ</span>
+          <span class="dot">• — •</span>
+          <span class="code to">ISA</span>
+        </div>
+        <div class="bp-times">
+          <div><small>Santa Cruz</small><strong>15:00 p.m.</strong></div>
+          <div><small>Isabela</small><strong>19:30 p.m.</strong></div>
+        </div>
+      </section>
+      
+      <div class="bp-details">
+        <div><label>Pasajero</label><span>Carmelinonator Carlosoto Pérezoso Ribadeneria</span></div>
+        <div><label>Cédula</label><span>1712345678</span></div>
+        <div><label>Equipaje</label><span>Sí</span></div>
+      </div>
+      <div class="bp-footer">
+       
+        <div><label>Muelle</label><span>A</span></div>
+        <div><label>Asientos</label><span>4</span></div>
+        <div><label>Lancha</label><span>Andy II</span></div>
+      </div>
+      <!-- Secciones extras SOLO debajo del ticket -->
+      <div class="bp-extras">
+        <h3>Equipaje incluido</h3>
+        <div class="extras-grid">
+          <div class="extraservices">
+            
+              <p>1 objeto personal (bajo asiento)</p>
+              <p>1 equipaje de mano estándar (55×40×25 cm)</p>
+              <p>Peso total ≤ 10 kg</p>
+           
+          </div>
+          <div class="extraservices">
+            <h3>Servicios opcionales</h3>
+            <p>Ninguno</p>
+            <p>Ninguno</p>
+            <p>Ninguno</p>
+          </div>
+        </div>
+      </div>
+      <div class="bp-timeline">
+        <h3>¡Llega a tiempo! Pasos antes del viaje</h3>
+        <div class="timeline-grid">
+          <div class="step">
+            <img src="https://i.postimg.cc/8zZGvY1s/llegadaf.jpg" alt="Muelle">
+            <strong>¡Llega al muelle!</strong>
+            <small>30 min antes</small>
+            <span>14:30 p.m.</span>
+          </div>
+          <div class="step">
+            <img src="https://i.postimg.cc/ncYpFzg4/chekf.jpg" alt="Check-in">
+            <strong>Check-in</strong>
+            <small>20 min antes</small>
+            <span>14:40 p.m.</span>
+          </div>
+          <div class="step">
+            <img src="https://i.postimg.cc/28fCNvcj/abordaf.jpg" alt="Embarque">
+            <strong>Embarque</strong>
+            <small>10 min antes</small>
+            <span>14:50 p.m.</span>
+          </div>
+          <div class="step">
+            <img src="https://i.postimg.cc/SxSqJ4bw/salidaf.jpg" alt="Salida">
+            <strong>Salida</strong>
+            <small>Hora programada</small>
+            <span>15:00 p.m.</span>
+          </div>
+        </div>
+      </div>
+      <footer class="bp-footer-promo">
+        <div class="promo-left">
+          <h4>Andy II Ferry Galápagos</h4>
+          <ul>
+            <li>Lancha de pasajeros ANDY II</li>
+            <li>Transporte marítimo interislas</li>
+            <li>Conoce Galápagos a bordo de una</li>
+            <li> embarcación cómoda y segura.</li>
+            <li>Traslados todos los días!</li>
+          </ul>
+        </div>
+        <div class="promo-right">
+          <h4>Contactos e informacion:</h4>
+          <div class="stores">
+            <a href="#"><img src="https://i.postimg.cc/QtXvDHfF/qr-actualizatec-400x400.png" alt="App Store"></a>
+          </div>
+          
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!-- Botón guardar pdf -->
+  <div class="print-button-group">
+    <button class="print-btn download" (click)="generatePdf()">
+      <i class="fa fa-download"></i>
+    </button>
+    <button class="print-btn print" (click)="     printTicket()">
+      <i class="fa fa-print"></i>
+    </button>
+    <button class="print-btn printd" (click)="     printTicketf()">
+      <i class="fa fa-free-code-camp"></i>
+    </button>
+  </div>
+  
+
+</body>
+</html>

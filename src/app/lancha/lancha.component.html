@@ -1,0 +1,97 @@
+<div class="container">
+    <!-- FORMULARIO -->
+    <section class="form-card">
+      <h2>{{ editingId ? 'Editar Lancha' : 'Nueva Lancha' }}</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label>Nombre
+          <input formControlName="nombre" />
+        </label>
+        <label>Capacidad
+          <input type="number" formControlName="capacidad" />
+        </label>
+        <label>Detalles
+          <textarea formControlName="detalles"></textarea>
+        </label>
+        <label>Estado
+          <select formControlName="estado">
+            <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
+          </select>
+        </label>
+  
+        <div class="btn-group">
+          <button type="submit" [disabled]="form.invalid">
+            {{ editingId ? 'Actualizar' : 'Guardar' }}
+          </button>
+          <button type="button" class="cancel" (click)="cancelEdit()" *ngIf="editingId">
+            Cancelar
+          </button>
+        </div>
+        <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+      </form>
+    </section>
+  
+    <section class="list-card">
+      <!-- BARRA DE BÚSQUEDA -->
+      <div class="search-bar">
+        <input
+          type="number"
+          placeholder="Buscar por ID"
+          [(ngModel)]="searchId"
+          name="searchId"
+        />
+        <button (click)="search()">🔍</button>
+        <button (click)="loadAll()">↺</button>
+      </div>
+    
+      <!-- TABLA DE LANCHAS -->
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Capacidad</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Recorre sólo la página actual -->
+            <tr *ngFor="let l of pagedLanchas">
+              <td>{{ l.id }}</td>
+              <td>{{ l.nombre }}</td>
+              <td>{{ l.capacidad }}</td>
+              <td>{{ l.estado }}</td>
+              <td class="actions">
+                <button (click)="edit(l)">
+                  ✏️<span class="tooltip">Editar lancha</span>
+                </button>
+                <button (click)="delete(l.id!)">
+                  🗑️<span class="tooltip">Eliminar lancha</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+      <!-- SPINNER Y MENSAJE SIN DATOS -->
+      <div class="loading" *ngIf="loading">Cargando…</div>
+      <div class="no-data" *ngIf="!loading && lanchas.length === 0">
+        No hay lanchas.
+      </div>
+    
+      <!-- CONTROLES DE PAGINACIÓN -->
+      <div class="pagination" *ngIf="lanchas.length > pageSize">
+        <button (click)="prevPage()" [disabled]="currentPage === 1">
+          ← Anterior
+        </button>
+        <span>Página {{ currentPage }} de {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+          Siguiente →
+        </button>
+      </div>
+    </section>
+    
+  </div>
+  

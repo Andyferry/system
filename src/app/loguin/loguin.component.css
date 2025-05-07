@@ -1,0 +1,97 @@
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    margin: 0; /* Asegurarse de que no haya márgenes */
+  }
+  
+  /* Contenedor principal */
+  .login-container {
+    margin-top: 5%;
+    display: flex;
+    align-items: flex-start; /* Alinea el contenido al margen superior */
+    justify-content: center;
+    height: 100vh;
+    padding-top: 50px; /* Ajusta este valor si deseas algo de espacio desde la parte superior */
+    width: 100%;
+  }
+  
+  /* Estilo del formulario */
+  .login-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Título */
+  .login-form h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Grupo de input */
+  .input-group {
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 500;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .input-group input:focus {
+    border-color: #40a3ff;
+    outline: none;
+  }
+  
+  /* Botón de login */
+  .login-btn {
+    width: 100%;
+    background: linear-gradient(to right, #40a9ff, #80d0ff);
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .login-btn:hover {
+    background: linear-gradient(to right, #80a2ff, #4083ff);
+  }
+  
+  /* Enlace de registro */
+  .register-link {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .register-link a {
+    color: #ff4081;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  

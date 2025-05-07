@@ -1,0 +1,102 @@
+<div class="container">
+  <!-- FORMULARIO -->
+  <section class="form-card">
+    <h2>{{ editingId ? 'Editar Cliente' : 'Nuevo Cliente' }}</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>Cédula
+        <input formControlName="cedula" />
+      </label>
+      <label>Nombres
+        <input formControlName="nombres" />
+      </label>
+      <label>Apellidos
+        <input formControlName="apellidos" />
+      </label>
+      <label>Teléfono
+        <input formControlName="telefono" />
+      </label>
+      <label>Correo
+        <input formControlName="correo" />
+      </label>
+      <label>Dirección
+        <textarea formControlName="direccion"></textarea>
+      </label>
+
+      <div class="btn-group">
+        <button type="submit" [disabled]="form.invalid">
+          {{ editingId ? 'Actualizar' : 'Guardar' }}
+        </button>
+        <button type="button" class="cancel" (click)="cancelEdit()" *ngIf="editingId">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- LISTA Y BÚSQUEDA -->
+  <section class="list-card">
+    <!-- BARRA DE BÚSQUEDA -->
+    <div class="search-bar">
+      <input
+        type="number"
+        placeholder="Buscar por ID"
+        [(ngModel)]="searchId"
+        name="searchId"
+      />
+      <button (click)="search()">🔍</button>
+      <button (click)="loadAll()">↺</button>
+    </div>
+  
+    <!-- TABLA DE CLIENTES -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Recorre sólo la página actual -->
+          <tr *ngFor="let c of pagedClientes">
+            <td>{{ c.id }}</td>
+            <td>{{ c.cedula }}</td>
+            <td>{{ c.nombres }}</td>
+            <td>{{ c.apellidos }}</td>
+            <td>{{ c.telefono }}</td>
+            <td class="actions">
+              <button (click)="edit(c)">
+                ✏️<span class="tooltip">Editar cliente</span>
+              </button>
+              <button (click)="delete(c.id!)">
+                🗑️<span class="tooltip">Eliminar cliente</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- SPINNER Y MENSAJE SIN DATOS -->
+    <div class="loading" *ngIf="loading">Cargando…</div>
+    <div class="no-data" *ngIf="!loading && clientes.length === 0">
+      No hay clientes.
+    </div>
+  
+    <!-- CONTROLES DE PAGINACIÓN -->
+    <div class="pagination" *ngIf="clientes.length > pageSize">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">
+        ← Anterior
+      </button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Siguiente →
+      </button>
+    </div>
+  </section>
+  
+</div>

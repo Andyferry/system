@@ -1,0 +1,115 @@
+
+<body>
+
+  <ngb-carousel class="mimo"
+    [interval]="3000"
+    [pauseOnHover]="false"
+    [showNavigationArrows]="true"
+    [showNavigationIndicators]="true">
+
+    <ng-template ngbSlide>
+      <img [src]="isSmallScreen ? 'https://i.postimg.cc/Mp6Pntrs/FIVE.jpg' : 'IGUANA.jpg'"
+        alt="Iguana"
+        class="d-block w-100 zoom-img">
+    </ng-template>
+
+    <ng-template ngbSlide>
+      <img [src]="isSmallScreen ? 'https://i.postimg.cc/W4t5nzVg/TWO.jpg' : 'FIVE (1).jpg'"
+        alt="Five"
+        class="d-block w-100 zoom-img">
+    </ng-template>
+
+    <ng-template ngbSlide>
+      <img [src]="isSmallScreen ? 'https://i.postimg.cc/qv1mynPp/THREE.jpg' : 'SEVEN (1).jpg'"
+        alt="Seven"
+        class="d-block w-100 zoom-img">
+    </ng-template>
+
+  </ngb-carousel>
+
+
+
+
+
+
+  <div class="promo-bar">
+    <div class="promo-content">
+      <img src="https://i.postimg.cc/4xF8kZrk/OFERTA.png" alt="promo-image"
+        class="promo-image">
+      <span class="promo-text">¡ Andy 2 – En Galápagos vive la aventura isla a isla. Alquila tu lancha y descubre el paraíso como nunca antes !</span>
+      <img
+        src="https://i.postimg.cc/sxnCWq0Y/487417442-1186450423142233-3135110530623009074-n-removebg-preview.png"
+        alt="promo-image" class="promo-image">
+
+    </div>
+  </div>
+
+  <div><title>LOS FAVORITOS
+      ¡Visitalos ya! Seguro los has visto antes.</title></div>
+
+  <h2 class="titulo-principal">Rutas favoritas</h2>
+  <p class="subtitulo">¡Visitalas ya! Seguro los has visto antes.</p>
+
+  <div class="carrusel-productos">
+    <div class="contenedor-carrusel" #carruselzapatos>
+      <div class="producto" *ngFor="let item of productos">
+        <div class="img-container">
+          <span class="descuento">{{ item.discount }}</span>
+          <img [src]="item.image" alt="producto" />
+        </div>
+        <h3>{{ item.name }}</h3>
+        <p class="descripcion">{{ item.description }}</p>
+        <p class="precio">
+          <span class="actual">${{ item.price }}</span>
+          <span class="viejo" *ngIf="item.oldPrice">${{ item.oldPrice }}</span>
+        </p>
+      </div>
+    </div>
+    <button class="boton" (click)="moverCarrusel('left')">&#8592;</button>
+    <button class="boton" (click)="moverCarrusel('right')">&#8594;</button>
+  </div>
+
+</body>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-section about">
+      <h2>Sobre Nosotros</h2>
+      <p>En <strong>ANDY II</strong>, OFRECEMOS VARIOS SERVICIOS.</p>
+    </div>
+
+    <div class="footer-section links">
+      <h2>Enlaces Rápidos</h2>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Reservas</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Preguntas Frecuentes</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section social">
+      <h2>Síguenos</h2>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-section newsletter">
+      <h2>Suscríbete</h2>
+      <p>Recibe nuestras últimas novedades y servicios.</p>
+      <form>
+        <input type="email" placeholder="andyii@GMAIL.COM" required>
+        <button type="submit">Suscribirse</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 ANDY II. Todos los derechos reservados.</p>
+  </div>
+</footer>

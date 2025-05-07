@@ -1,0 +1,65 @@
+@media print and (min-width: 800px)   {
+    /* Sin márgenes en la hoja */
+    @page {
+      margin: 0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  
+    /* Oculta explícitamente header, nav, aside, footer, etc. */
+    .form-card,.list-card{
+      display: none !important;
+    }
+    
+    .navbar {
+      display: none !important;
+      visibility: hidden !important;
+    }
+      /* 1) Oculta todo lo que sea hijo directo de .container, excepto el boarding‑pass */
+      .container > :not(.boarding-pass) {
+        visibility: hidden !important;
+        visibility: hidden !important;
+      }
+    
+      /* 2) Aun si estuviera dentro de un overlay u otro contenedor, asegúrate de ocultar popups u overlays */
+      .popup-overlay {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    
+     
+  
+  }
+
+
+  @media print and (max-width: 799px) {
+
+    html, body {
+      visibility: visible !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      height: auto !important;
+    }
+  
+    body * {
+      visibility: hidden !important;
+    }
+  
+    .boarding-pass,
+    .boarding-pass * {
+      visibility: visible !important;
+  
+    }
+    .form-card,.list-card{
+      display: none !important;
+    }
+    .bp-header{
+      visibility: visible !important;
+    }
+  
+
+}
+  
+

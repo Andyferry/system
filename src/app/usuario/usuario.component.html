@@ -1,0 +1,83 @@
+<div class="container">
+    <!-- FORMULARIO -->
+    <section class="form-card">
+      <h2>{{ editingId ? 'Editar Usuario' : 'Nuevo Usuario' }}</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label>Cédula
+          <input formControlName="cedula" />
+        </label>
+        <label>Nombres
+          <input formControlName="nombres" />
+        </label>
+        <label>Apellidos
+          <input formControlName="apellidos" />
+        </label>
+        <label>Teléfono
+          <input formControlName="telefono" />
+        </label>
+        <label>Correo
+          <input formControlName="correo" />
+        </label>
+        <label>Dirección
+          <textarea formControlName="direccion"></textarea>
+        </label>
+        <label>Cargo
+          <input formControlName="cargo" />
+        </label>
+        <label>Clave
+          <input type="password" formControlName="clave" />
+        </label>
+  
+        <div class="btn-group">
+          <button type="submit" [disabled]="form.invalid">
+            {{ editingId ? 'Actualizar' : 'Guardar' }}
+          </button>
+          <button type="button" class="cancel" (click)="cancelEdit()" *ngIf="editingId">
+            Cancelar
+          </button>
+        </div>
+        <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+      </form>
+    </section>
+  
+    <!-- LISTA Y BÚSQUEDA -->
+    <section class="list-card">
+      <div class="search-bar">
+        <input type="number" placeholder="Buscar por ID" [(ngModel)]="searchId" name="searchId" />
+        <button (click)="search()">🔍</button>
+        <button (click)="loadAll()">↺</button>
+      </div>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Cédula</th><th>Nombre</th><th>Apellido</th><th>Cargo</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of usuarios">
+            <td>{{ u.id }}</td>
+            <td>{{ u.cedula }}</td>
+            <td>{{ u.nombres }}</td>
+            <td>{{ u.apellidos }}</td>
+            <td>{{ u.cargo }}</td>
+            <td class="actions">
+              <button (click)="edit(u)">
+                ✏️
+                <span class="tooltip">Editar viaje</span>
+              </button>
+            
+              <button (click)="delete(u.id!)">
+                🗑️
+                <span class="tooltip">Eliminar viaje</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <div class="loading" *ngIf="loading">Cargando…</div>
+      <div class="no-data" *ngIf="!loading && usuarios.length===0">No hay usuarios.</div>
+    </section>
+  </div>
+  

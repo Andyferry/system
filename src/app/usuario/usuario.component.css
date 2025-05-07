@@ -1,0 +1,164 @@
+/* Layout responsivo */
+.container {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    margin-top: 3%!important;
+  }
+  @media (max-width: 768px) {
+    .container { flex-direction: column; }
+  }
+  
+  /* Tarjetas */
+  .form-card, .list-card {
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 1rem;
+    flex: 1;
+  }
+  .list-card {
+    overflow-x: auto;
+  }
+  /* Formulario */
+  .form-card h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+  .form-card label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+  .form-card input,
+  .form-card textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+  }
+  .form-card textarea { resize: vertical; }
+  
+  /* Botones */
+  .btn-group {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .btn-group button {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .btn-group button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .btn-group .cancel {
+    background: #f0f0f0;
+  }
+  .error {
+    margin-top: 0.5rem;
+    color: #c00;
+  }
+  
+  /* Search bar */
+  .search-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .search-bar input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #bbb;
+    border-radius: 0.25rem;
+  }
+  .search-bar button {
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  /* Tabla */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+  th { background: #fafafa; font-weight: 600; }
+  .actions button {
+    margin-right: 0.25rem;
+    padding: 0.3rem 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  .actions :hover {
+    background-color: rgb(87, 87, 87)!important;
+  }
+  
+  /* Mensajes */
+  .loading, .no-data {
+    padding: 1rem;
+    text-align: center;
+    color: #666;
+  }
+  
+
+    
+@media (min-width: 1024px) {
+  .list-card {
+    min-width: 900px; /* o el ancho que necesites */
+  }
+}
+
+
+
+
+
+
+.actions button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+
+.actions button .tooltip {
+  display: flex;
+  position: absolute;
+  z-index: 400;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 100%;           /* encima del botón */
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.actions button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-8px);
+}

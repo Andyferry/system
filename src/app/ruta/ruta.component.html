@@ -1,0 +1,80 @@
+<div class="container">
+    <!-- FORMULARIO -->
+    <section class="form-card">
+      <h2>{{ editingId ? 'Editar Ruta' : 'Nueva Ruta' }}</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <label>Isla Salida
+          <input formControlName="isla_salida" />
+        </label>
+        <label>Isla Llegada
+          <input formControlName="isla_llegada" />
+        </label>
+        <label>Duracion
+          <textarea formControlName="notas"></textarea>
+        </label>
+        <label>Siglas salida
+          <textarea formControlName="siglassal"></textarea>
+        </label>
+        <label>Siglas llegada
+          <textarea formControlName="siglaslleg"></textarea>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" formControlName="estado" />
+          Activa
+        </label>
+  
+        <div class="btn-group">
+          <button type="submit" [disabled]="form.invalid">
+            {{ editingId ? 'Actualizar' : 'Guardar' }}
+          </button>
+          <button type="button" class="cancel" (click)="cancelEdit()" *ngIf="editingId">
+            Cancelar
+          </button>
+        </div>
+        <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+      </form>
+    </section>
+  
+    <!-- LISTA Y BÚSQUEDA -->
+    <section class="list-card">
+      <div class="search-bar">
+        <input type="number" placeholder="Buscar por ID" [(ngModel)]="searchId" name="searchId" />
+        <button (click)="search()">🔍</button>
+        <button (click)="loadAll()">↺</button>
+      </div>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Salida</th><th>Llegada</th><th>duracion</th><th>Activa</th><th>Siglas</th><th>Siglas</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of rutas">
+            <td>{{ r.id }}</td>
+            <td>{{ r.isla_salida }}</td>
+            <td>{{ r.isla_llegada }}</td>
+            <td>{{ r.notas }}</td>
+            <td>{{ r.estado ? 'Sí' : 'No' }}</td>
+            <td>{{ r.siglassal }}</td>
+            <td>{{ r.siglaslleg }}</td>
+            <td class="actions">
+              <button (click)="edit(r)">
+                ✏️
+                <span class="tooltip">Editar viaje</span>
+              </button>
+            
+              <button (click)="delete(r.id!)">
+                🗑️
+                <span class="tooltip">Eliminar viaje</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <div class="loading" *ngIf="loading">Cargando…</div>
+      <div class="no-data" *ngIf="!loading && rutas.length===0">No hay rutas.</div>
+    </section>
+  </div>
+  

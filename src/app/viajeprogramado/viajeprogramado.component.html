@@ -1,0 +1,268 @@
+<div class="container">
+  <!-- FORMULARIO -->
+  <section class="form-card">
+    <h2>{{ editingId ? 'Editar Viaje' : 'Nuevo Viaje' }}</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>Fecha
+        <input type="date" formControlName="fecha" />
+      </label>
+      <label>Ruta
+        <select formControlName="id_ruta">
+          <option value disabled>--Seleccione ruta--</option>
+          <option *ngFor="let r of rutas" [value]="r.id">
+            {{ r.isla_salida }} → {{ r.isla_llegada }}
+          </option>
+        </select>
+      </label>
+      <label>Horario
+        <select formControlName="id_horario">
+          <option value disabled>--Seleccione horario--</option>
+          <option *ngFor="let h of horarios" [value]="h.id">
+            {{ h.hora_salida }} – {{ h.notas }}
+          </option>
+        </select>
+      </label>
+      <label>Lancha
+        <select formControlName="id_lancha">
+          <option value disabled>--Seleccione lancha--</option>
+          <option *ngFor="let l of lanchas" [value]="l.id">
+            {{ l.nombre }} ({{ l.capacidad }} pax)
+          </option>
+        </select>
+      </label>
+      <label>Notas
+        <textarea formControlName="notas"></textarea>
+      </label>
+      <label>Estado
+        <select formControlName="estado">
+          <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
+        </select>
+      </label>
+      <div class="btn-group">
+        <button type="submit" [disabled]="form.invalid">
+          {{ editingId ? 'Actualizar' : 'Guardar' }}
+        </button>
+        <button type="button" class="cancel" (click)="cancelEdit()"
+          *ngIf="editingId">
+          Cancelar
+        </button>
+      </div>
+      <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+    </form>
+  </section>
+
+  <!-- LISTA CON SCROLL HORIZONTAL -->
+  <section class="list-card">
+    <!-- BARRA DE BÚSQUEDA -->
+    <div class="search-bar">
+      <input
+        type="number"
+        placeholder="Buscar por ID"
+        [(ngModel)]="searchId"
+        name="searchId"
+      />
+      <button (click)="search()">🔍</button>
+      <button (click)="loadAll()">↺</button>
+    </div>
+  
+    <!-- TABLA DE RESULTADOS -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Ruta</th>
+            <th>Horario</th>
+            <th>Lancha</th>
+            <th>Estado</th>
+            <th class="col-indicator"></th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Reemplaza viajes por pagedViajes para paginación -->
+          <tr *ngFor="let v of pagedViajes">
+            <td>{{ v.id }}</td>
+            <td>{{ v.fecha }}</td>
+            <td>
+              {{ rutaMap[v.id_ruta]?.isla_salida }}
+              →
+              {{ rutaMap[v.id_ruta]?.isla_llegada }}
+            </td>
+            <td>
+              {{ horarioMap[v.id_horario]?.hora_salida }}
+              –
+              {{ horarioMap[v.id_horario]?.notas }}
+            </td>
+            <td>{{ lanchaMap[v.id_lancha!]?.nombre }}</td>
+            <td>{{ v.estado }}</td>
+            <td class="col-indicator">
+              <span class="status-circle {{ v.estado }}"></span>
+            </td>
+            <td class="actions">
+              <button (click)="edit(v)">
+                ✏️<span class="tooltip">Editar viaje</span>
+              </button>
+              <button (click)="delete(v.id!)">
+                🗑️<span class="tooltip">Eliminar viaje</span>
+              </button>
+              <button (click)="info(v.id!)">
+                ℹ️<span class="tooltip">Ver información</span>
+              </button>
+              <button (click)="revisaTikets(v.id!)">
+                🧾<span class="tooltip">Listar tickets</span>
+              </button>
+              <button (click)="generarTiket(v.id!)">
+                🎟️<span class="tooltip">Generar ticket</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- CARGANDO / SIN DATOS -->
+    <div class="loading" *ngIf="loading">Cargando…</div>
+    <div class="no-data" *ngIf="!loading && viajes.length === 0">
+      No hay viajes.
+    </div>
+  
+    <!-- CONTROLES DE PAGINACIÓN -->
+    <div class="pagination" *ngIf="viajes.length > pageSize">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">
+        ← Anterior
+      </button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Siguiente →
+      </button>
+    </div>
+  </section>
+  
+
+  <!-- POPUP PARA CREAR TICKET -->
+  <div class="modal-backdrop" *ngIf="showCreateModal">
+    <div class="modal">
+      <header>
+
+        <h2>Crear Ticket</h2>
+        <button class="close" (click)="closeModal()">×</button>
+      </header>
+
+      <form [formGroup]="tiketForm" (ngSubmit)="onSubmitTicket()">
+
+        <!-- Cédula del cliente -->
+        <div class="form-group">
+          <label for="cliente_cedula">Cédula del Cliente</label>
+          <input formControlName="cliente_cedula"
+            (keydown.enter)="$event.preventDefault(); onCedulaEnter()" />
+        </div>
+        <div class="form-group">
+        <label>Nombres
+          <input formControlName="nombres" />
+        </label>
+      </div>
+        <div class="form-group">
+        <label>Apellidos
+          <input formControlName="apellidos" />
+        </label>
+      </div>
+        <!-- Asientos -->
+        <div class="form-group">
+          <label for="asientos">Asientos</label>
+          <input id="asientos" type="number" formControlName="asientos"
+            min="1" />
+        </div>
+
+        <!-- Estado -->
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select id="estado" formControlName="estado">
+            <option value="valido">válido</option>
+            <option value="usado">usado</option>
+            <option value="cancelado">cancelado</option>
+          </select>
+        </div>
+
+        <!-- Código -->
+        <div class="form-group form-group--hidden">
+          <label for="codigo">Código</label>
+          <input id="codigo" type="text" formControlName="codigo" />
+        </div>
+
+        <!-- Equipaje -->
+        <div class="form-group">
+          <label for="equipaje">Equipaje</label>
+          <input id="equipaje" type="text" formControlName="equipaje" />
+        </div>
+
+        <!-- Extras -->
+        <div class="form-group">
+          <label for="extras">Extras</label>
+          <input id="extras" type="text" formControlName="extras" />
+        </div>
+
+        <!-- Notas -->
+        <div class="form-group">
+          <label for="notas">Notas</label>
+          <textarea id="notas" formControlName="notas"></textarea>
+        </div>
+
+        <!-- Hidden: id_viaje -->
+        <input type="hidden" formControlName="id_viaje" />
+
+        <div class="popup-footer">
+          <button type="button" (click)="closeModal()">Cerrar</button>
+          <button type="submit" [disabled]="tiketForm.invalid">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DE INFORMACIÓN DE VIAJE -->
+  <div class="modal-backdrop" *ngIf="showInfoModal">
+    <div class="modal">
+      <h2>Información del Viaje #{{ infoData?.v.id }}</h2>
+
+      <div class="info-section">
+        <p><strong>Fecha:</strong> {{ infoData?.v.fecha }}</p>
+        <p><strong>Ruta:</strong> {{ infoData?.ruta?.isla_salida }} → {{
+          infoData?.ruta?.isla_llegada }}</p>
+        <p><strong>Horario:</strong> {{ infoData?.horario?.hora_salida }} – {{
+          infoData?.horario?.notas }}</p>
+        <p><strong>Lancha:</strong> {{ infoData?.lancha?.nombre }} (Capacidad:
+          {{ infoData?.lancha?.capacidad }} pax)</p>
+      </div>
+
+      <div class="info-section">
+        <p><strong>Ocupados:</strong> {{ infoData?.ocupados }}</p>
+        <p><strong>Disponibles:</strong> {{ infoData?.disponibles }}</p>
+        <p><strong>Ocupación:</strong> {{ infoData?.pct }}%</p>
+      </div>
+
+      <h3>Pasajeros</h3>
+      <table class="popup-table">
+        <thead>
+          <tr>
+            <th>Cant/Pax</th>
+            <th>Cédula</th>
+            <th>Nombres y apellidos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of infoData.pasajeros">
+            <td>{{ p.asientos }}</td>
+            <td>{{ p.cliente_cedula }}</td>
+            <td>{{ p.nombres }} </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="popup-footer">
+        <button (click)="closeInfoModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+</div>

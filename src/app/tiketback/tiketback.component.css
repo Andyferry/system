@@ -1,0 +1,1431 @@
+.container {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+  margin-top: 3%!important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+.form-card, .list-card {
+  background: #fff;
+  border-radius: .5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+  padding: 1rem;
+  flex: 1;
+}
+.list-card {
+  overflow-x: auto;
+}
+
+.form-card label, .list-card .search-bar {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.form-card input, .form-card select, .form-card textarea {
+  width: 100%;
+  padding: .5rem;
+  margin-top: .25rem;
+  border: 1px solid #ccc;
+  border-radius: .25rem;
+}
+
+.form-card button {
+  margin-top: 1rem;
+  padding: .75rem 1.5rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: .25rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.form-card button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.search-bar {
+  display: flex;
+  gap: 1.5rem!important;
+}
+
+.search-bar input {
+  flex: 1;
+  width: 29cap!important;
+  padding: .5rem;
+  border: 1px solid #bbb;
+  border-radius: .25rem;
+}
+
+.search-bar button {
+  padding: .5rem .75rem;
+  border: none;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+
+
+
+.list-card table {
+  min-width: 600px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: .75rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.actions button {
+  margin-right: .25rem;
+  padding: .3rem .5rem;
+  border: none;
+  border-radius: .25rem;
+  cursor: pointer;
+}
+.actions :hover {
+  background-color: rgb(85, 85, 85)!important;
+}
+
+
+@media (min-width: 1024px) {
+  .list-card {
+    min-width: 1000px; /* o el ancho que necesites */
+  }
+}
+
+.opcional {
+  background-color: #ccd9ec;
+}
+
+
+
+
+
+/* tamaño y forma del círculo */
+.status-circle {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;    /* color por defecto */
+  vertical-align: middle;
+}
+
+/* cuando el estado sea 'valido', el círculo será verde */
+.status-circle.valid {
+  background-color: green;
+}
+
+/* opcional: rojo explícito para inválido (ya es el default) */
+.status-circle.invalid {
+  background-color: red;
+}
+
+
+
+
+
+
+
+.actions button {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+
+.actions button .tooltip {
+  display: flex;
+  position: absolute;
+  z-index: 400;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 100%;           /* encima del botón */
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.actions button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+
+
+
+
+
+
+
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  color: #333;
+}
+
+.table-container {
+  margin-top: 1rem;
+}
+
+.table-header, .table-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+
+.table-header {
+  font-weight: bold;
+  padding: 10px 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.table-row {
+  margin-top: 10px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.btn-add {
+  background-color: #4CAF50;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-save {
+  background-color: #2196F3;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+.table-scroll-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: 10px;
+  min-width: 700px; /* fuerza el scroll si el contenedor es más pequeño */
+}
+
+.table-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+
+
+
+
+
+
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+.tooltip-container :hover {
+background-color: rgba(26, 26, 26, 0.5);
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  width: max-content;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 5px 8px;
+  border-radius: 5px;
+
+  position: absolute;
+  z-index: 1;
+  top: 125%;  /* Mostramos debajo */
+  left: 50%;
+  transform: translateX(-50%);
+
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.pagination button {
+  margin: 0 0.5rem;
+  padding: 0.3rem 0.8rem;
+}
+.pagination span {
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Pase de embarque */
+.boarding-pass {
+  width: 230px;
+  min-width: 230px;
+  max-width: 230px;
+
+  height: 280px;           /* Alto fijo */
+  min-height: 420px;
+  max-height: 420px;
+
+  flex-shrink: 0;
+  box-sizing: border-box;
+  overflow: hidden;  
+     /* Oculta cualquier contenido que se desborde */
+}
+
+.bp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.bp-title {
+  font-size: 0.6rem!important;
+  font-weight: 700;
+  color: #000000!important;
+}
+
+.bp-logo {
+  height: 32px;
+}
+
+
+
+.bp-logoprincipal {
+  height: 60px;
+  width: auto;
+}
+
+
+
+.bp-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;   /* en lugar de 12px, para más separación */
+  padding: 16px;
+}
+
+.bp-main + .bp-boat {
+  margin-top: 6px!important; /* espacio entre QR y sección */
+}
+
+
+.bp-qr {
+  width: 80px;           /* ancho fijo */
+  height: 50px;          /* un 20% más alto que el ancho */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.bp-qr img {
+  width: 80px;           /* un poco más pequeño que el contenedor */
+  height: 50px;          /* igual alto que ancho para el QR */
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.bp-qr .seq {
+  font-size: 10px;     /* texto de "Seq. 1" más pequeño */
+  line-height: 1;
+}
+
+/* Asegúrate de que cada sección ocupe el 100% del ancho */
+.bp-qr,
+.bp-boat {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Opcional: centra el QR si lo deseas */
+.bp-qr {
+  /* Ocupa todo el ancho del contenedor y permite centrar con text-align */
+  width: 100% !important;
+  box-sizing: border-box;
+  
+  /* Quita el borde derecho y el padding-right que empujan la imagen */
+  border-right: none;
+  padding: 0;
+  
+  /* Centra cualquier elemento inline dentro */
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+.bp-boat {
+  flex: 1;
+  padding-left: 16px;
+}
+
+.bp-date {
+  font-size: 0.6rem!important;
+  margin-bottom: 8px;
+}
+
+.bp-route {
+  display: flex;
+  align-items: center;
+  font-size: 0.7rem!important;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #000000!important;
+}
+
+.bp-route .code {
+  width: 60px;
+  text-align: center;
+}
+
+.bp-route .dot {
+  flex: 1;
+  text-align: center;
+  font-size: 0.3rem!important;
+  color: #999;
+}
+
+.bp-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.5rem!important;
+  margin-bottom: 8px;
+  color: #000000!important;
+}
+
+.bp-times small {
+  display: block;
+  color: #000000!important;
+}
+
+.bp-reserv {
+  font-size: 0.7em!important;
+  color: #000000;
+  font-weight: 800;
+}
+
+.bp-details {
+  display: flex;           /* activa flex */
+  flex-direction: row;     /* fila única */
+  flex-wrap: nowrap;       /* sin salto a otra línea */
+  justify-content: space-between;
+  gap: 8px;                /* espacio horizontal entre items */
+  padding: 12px 16px;      /* conserva tu padding si lo necesitas */
+}
+
+
+
+.bp-footer {
+  border-bottom: 1px dashed #000000;
+}
+
+.bp-details div, .bp-footer div {
+  text-align: center;
+  flex: 1;
+}
+
+.bp-details label, .bp-footer label {
+  display: block;
+  font-size: 0.4rem!important;
+  color: #000000;
+  font-weight: 800;
+}
+
+.bp-details span, .bp-footer span {
+  display: block;
+  font-size: 0.5rem!important;
+  font-weight: 700;
+  color: #000000!important;
+}
+
+/* Secciones extras dentro del ticket */
+.bp-extras {
+  padding: 16px;
+  margin: 16px;
+
+  
+}
+
+.bp-extras h3 {
+  color: var(--primary);
+  margin-top: 5px!important;
+  margin-bottom: 12px;
+  color: #000000!important;
+}
+
+.extras-grid {
+  display: flex;
+
+  flex-wrap: wrap;
+}
+
+.extra {
+ 
+  padding: 12px;
+  flex: 1 1 240px;
+}
+
+.extra h4 {
+  margin-top: 0;
+  color: var(--secondary);
+}
+
+.icons {
+  display: flex;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.icon {
+  text-align: left !important;
+  flex: 1;
+}
+
+.icon img {
+  height: 40px;
+}
+
+.icon.disabled img {
+  opacity: 0.3;
+}
+
+.notes {
+  font-size: 0.4rem!important;
+  color: #000000!important;
+  padding-left: 16px;
+  margin: 8px 0 0;
+
+}
+.extraservices h4 {
+  font-size: 0.4rem!important;   /* o 14px, 12px, según prefieras */
+  margin-top: 2px!important;   /* opcional: menos espacio bajo el título */
+  font-weight: 800!important; /* negrita */
+  color: #000000;
+}
+
+
+
+.extraservices p {
+  font-size: 0.4rem!important;    /* letra más pequeña para el párrafo */
+  margin-top: 0px!important;      /* opcional: un pequeño espacio encima */
+  color: #000000;
+  font-weight: 780!important; /* negrita */
+
+}
+
+/* Timeline */
+.bp-timeline {
+  margin-top: 5px!important;
+  margin: 24px 16px;
+  border-top: 1px dashed #000000;
+}
+
+.bp-timeline h3 {
+  color: var(--primary);
+  margin-bottom: 16px;
+  margin-top: 5px!important;
+  margin-left: 19px;
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* siempre 2 columnas */
+  gap: 12px;
+}
+
+.step {
+  background: var(--accent);
+  border-radius: 6px;
+  padding: 1px!important;
+  text-align: center;
+  flex: 1 1 120px;
+}
+
+.step img {
+  height: 8px;
+  margin-bottom: 8px;
+}
+
+.step strong {
+  display: block;
+  font-size: 0.7rem;
+}
+
+.step small {
+  display: block;
+  font-size: 0.5rem;
+  color: #000000;
+}
+
+.step span {
+  display: block;
+  font-size: 0.6rem;
+}
+
+
+
+
+.bp-footer-promo {
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px!important;             /* espacio reducido */
+  /* o si quieres distinto en horizontal y vertical: */
+  /* column-gap: 8px; row-gap: 4px; */
+  
+}
+
+
+.promo-left {
+  flex: 0 0 70%;      /* ocupa 70% */
+  max-width: 70%;
+}
+
+.promo-right {
+  flex: 0 0 30%;      /* ocupa 30% */
+  max-width: 30%;
+}
+
+.promo-left h4, .promo-right h4 {
+  color:  #000000!important;
+  margin-top: 0;
+  font-size: 0.4rem !important;
+  font-weight: 800!important;
+}
+
+.promo-left ul {
+  padding-left: 16px;
+  font-size: 0.4rem !important;
+  font-weight: 780!important;
+  color: #000000!important;
+}
+
+.stores a img {
+  height: 52px!important;
+  margin-right: 0px!important;
+}
+
+.bp-footer-promo a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 0.25rem !important;
+}
+
+/* Botón imprimir fijo */
+.print-btn-fixed {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 18px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.boarding-pass {
+ 
+  margin: 0px auto;
+  border: 1px solid #735F4B;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+.boarding-pass * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.bp-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.bp-logo {
+  height: 32px;
+}
+
+.bp-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;   /* en lugar de 12px, para más separación */
+  padding: 16px;
+}
+
+
+.bp-qr {
+  /* Ocupa todo el ancho del contenedor y permite centrar con text-align */
+  width: 100% !important;
+  box-sizing: border-box;
+  
+  /* Quita el borde derecho y el padding-right que empujan la imagen */
+  border-right: none;
+  padding: 0;
+  
+  /* Centra cualquier elemento inline dentro */
+  text-align: center;
+}
+
+.bp-qr .seq {
+  background: #eee;
+  border-radius: 4px;
+  font-size: 0.5rem!important;     /* texto de "Seq. 1" más pequeño */
+  margin-bottom: 8px;
+}
+
+.bp-qr {
+  width: 80px;           /* ancho fijo */
+  height: 50px;          /* un 20% más alto que el ancho */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+
+.bp-qr img {
+  width: 80px;           /* un poco más pequeño que el contenedor */
+  height: 50px;          /* igual alto que ancho para el QR */
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.bp-flight {
+  flex: 1;
+  padding-left: 16px;
+}
+
+.bp-date {
+  font-size: 0.5rem!important;
+  margin-bottom: 8px;
+  font-weight: 600!important;
+  color: #000000!important;
+}
+
+.bp-route {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.bp-route .code {
+  width: 60px;
+  text-align: center;
+}
+
+.bp-route .dot {
+  flex: 1;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.bp-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.bp-times small {
+  display: block;
+  color: #000000!important;
+  font-weight: 600!important;
+}
+
+
+
+.bp-details, .bp-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px dashed #000000;
+}
+
+.bp-footer {
+  border-top: none;
+  border-bottom: 1px dashed #000000;
+}
+
+.bp-details div, .bp-footer div {
+  text-align: center;
+  flex: 1;
+}
+
+.bp-details label, .bp-footer label {
+  display: block;
+  font-size: 0.75rem;
+  color: #000000;
+}
+
+.bp-details span, .bp-footer span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+
+:root {
+  --primary: #735F4B;
+  --secondary: #8FBCBB;
+  --accent: #F5E1C3;
+  --text: #333;
+  --bg: #fff;
+}
+
+.app-grid {
+  display: flex;
+  /* Flex para dos columnas */
+  gap: 24px;
+  width: 70% !important;
+  /* Ancho del 50% */
+  margin: 4% auto;
+  flex-wrap: wrap;
+}
+
+.form-panel {
+  background: var(--accent);
+  padding: 24px;
+  border-radius: 8px;
+  flex: 1 1 300px;
+  /* Ocupa al menos 300px */
+}
+
+.form-panel h2 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+.form-panel label {
+  display: block;
+  margin: 12px 0 4px;
+  font-weight: 600;
+}
+
+.form-panel input,
+.form-panel select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-panel .print-btn {
+  margin-top: 16px;
+  padding: 10px 16px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-panel .print-btn i {
+  margin-right: 6px;
+}
+
+/* 1) Equipaje y servicios */
+.bp-extras {
+ 
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.bp-extras h3 {
+  margin-bottom: 12px;
+  font-size: 0.4rem!important;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.extras-grid {
+  display: flex;
+  
+  flex-wrap: wrap;
+}
+
+.extra {
+  background: var(--bg);
+
+  padding: 12px;
+  flex: 1 1 240px;
+}
+
+.extra h4 {
+  margin-top: 0;
+  color: var(--secondary);
+}
+
+.icons {
+  display: flex;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.icon {
+  text-align: center;
+  flex: 1;
+}
+
+.icon img {
+  height: 40px;
+}
+
+
+.icon.disabled img {
+  opacity: 0.3;
+}
+
+.notes {
+  font-size: 0.8rem;
+  color: #000000;
+  padding-left: 16px;
+  margin: 8px 0 0;
+  font-weight: 780!important;
+}
+
+/* 2) Timeline */
+.bp-timeline {
+  margin: 24px 0;
+}
+
+.bp-timeline h3 {
+  font-size: 0.4rem!important;
+  margin-bottom: 16px;
+  color:  rgb(0, 0, 0);
+  font-weight: 800;
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;           /* mucho más compacto */
+}
+
+.step {
+  background: var(--accent);
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+  flex: 1 1 120px;
+}
+
+.step img {
+  transform: scale(1.5);
+  transform-origin: center center;
+
+}
+
+.step strong {
+  display: block;
+  font-size: 0.4rem;
+  font-weight: 800;
+}
+
+.step small {
+  display: block;
+  font-size: 0.4rem;
+  color: #000000;
+  font-weight: 700;
+}
+
+.step span {
+  display: block;
+  font-size: 0.4rem;
+  margin-top: 0px!important;
+  font-weight: 800;
+  color: #000000;
+}
+
+/* 3) Footer promocional */
+.bp-footer-promo {
+  display: flex;
+  justify-content: space-between;
+  background: var(--bg);
+  border-top: 3px dashed #ccc;
+  padding: 16px;
+  gap: 24px;
+  flex-wrap: wrap;
+  
+}
+
+.promo-left, .promo-right {
+  flex: 1 1 280px;
+}
+
+.promo-left h4, .promo-right h4 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+.promo-left ul {
+  padding-left: 16px;
+  font-size: 0.85rem;
+}
+
+.stores a img {
+  height: 12px;
+  margin-right: 8px;
+}
+
+.bp-footer-promo a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+
+.print-button-group {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;       /* separación vertical entre botones */
+  z-index: 1000;
+}
+
+/* estilos comunes */
+.print-btn {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* botón “descargar PDF” */
+.print-btn.download {
+  background-color: #e7a248;
+}
+.print-btn.download:hover {
+  background-color: #fdfa32;
+  transform: scale(1.1);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* botón “imprimir directo” */
+.print-btn.print {
+  background-color: #175fbd;
+}
+.print-btn.print:hover {
+  background-color: #46dae5;
+  transform: scale(1.1);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+
+.print-btn.printd {
+  background-color: #30a352;
+}
+.print-btn.printd:hover {
+  background-color:#46e576; 
+  transform: scale(1.1);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 1) Interlineado compacto pero legible */
+.boarding-pass,
+.boarding-pass * {
+  line-height: 1 !important; /* aún más compacto que 1.2 */
+}
+
+/* 2) Márgenes verticales y padding: fuera */
+.boarding-pass label,
+.boarding-pass span,
+.boarding-pass small,
+.boarding-pass strong,
+.bp-date,
+.bp-route,
+.bp-times,
+.bp-reserv,
+.step {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 3) Margen lateral pequeño (ej: 4px) en el contenedor principal */
+.boarding-pass {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 4) Quita el padding/margen de las secciones internas */
+.bp-header,
+.bp-main,
+.bp-details,
+.bp-footer,
+.bp-extras,
+.bp-timeline,
+.bp-footer-promo {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 5) También en hijos directos de detalles y footer */
+.bp-details > div,
+.bp-footer > div {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 6) Forzar box-sizing y quitar espacios en todo */
+.boarding-pass * {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* 7) Centrar el QR */
+.bp-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bp-qr img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+
+
+@media (max-width: 900px) {
+  .form-panel {
+    padding-left: 10px!important;
+    min-width:  330px!important;   /* limita al 100% del .form-panel */
+  }
+  }
+  
+  @media (min-width: 900px) and (max-width: 1200px) {
+    .form-panel {
+      padding-left: 6vh!important;
+      min-width:  330px!important;   /* limita al 100% del .form-panel */
+    }
+  
+  }
+  
+  @media (min-width: 1400px) {
+  .form-panel input,
+  .form-panel select {
+    width: 460px!important; /* ancho real de rollo térmico */
+    max-width:  460px!important;   /* limita al 100% del .form-panel */
+  }
+  }
+
+
+
+ 
+
+
+  
+
+  
+  /* Añade esto a tu CSS global, sin tocar el HTML */
+/* Reduce el ancho de 80 mm a 70 mm sólo en la impresión */
+@media print and (min-width: 800px)  {
+  
+  /* …tus reglas de size, html/body, .boarding-pass… */
+
+  /* 1) Quita casi todo el margin-bottom entre secciones */
+  .boarding-pass > * {
+    margin-bottom: 0.2mm !important;
+  }
+  
+
+  /* 2) Elimina padding de las secciones internas */
+  .bp-header,
+  .bp-main,
+  .bp-boat,
+  .bp-details,
+  .bp-footer,
+  .bp-extras,
+  .extras-grid,
+  .bp-timeline,
+  .extraservices,
+  .bp-footer-promo {
+    padding: 0 !important;
+    margin: 0 !important;
+    
+  }
+
+  /* 3) Reduce los gaps de flex y grid */
+  .bp-main {
+    gap: 0.5mm !important;
+  }
+  .bp-details {
+    gap: 0.5mm !important;
+  }
+  .extras-grid,
+  .timeline-grid {
+    gap: 0.5mm !important;
+  }
+
+  /* 4) Asegura que cada bloque interno no añada su propio margen */
+  .boarding-pass *,
+  .boarding-pass *:before,
+  .boarding-pass *:after {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+
+  .bp-extras p {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+  }
+
+  .bp-extras h3 {
+    margin-bottom: 0.5mm !important;  /* ajusta a lo que necesites */
+    padding-bottom: 0 !important;     /* por si hay padding extra */
+    line-height: 1.1 !important;       /* opcional: ajusta altura de línea */
+  }
+}
+
+
+
+@media print and (max-width: 799px) {
+
+  html, body {
+    visibility: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .boarding-pass,
+  .boarding-pass * {
+    visibility: visible !important;
+
+  }
+  .bp-header{
+    visibility: visible !important;
+  }
+
+  .boarding-pass {
+    position: absolute !important;
+    top: 0mm !important;     /* <- baja el ticket 20 mm desde el borde superior */
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+  }
+
+
+
+
+  .boarding-pass {
+    width: 80mm!important; /* Ancho fijo */
+    min-width: 80mm!important;
+    max-width: 80mm!important;
+  
+    height: 550px!important;        /* Alto fijo */
+    min-height: 550px!important;
+    max-height: 550px!important;
+  
+    flex-shrink: 0;
+    box-sizing: border-box;
+    overflow: hidden;        /* Oculta cualquier contenido que se desborde */
+  }
+  
+  }

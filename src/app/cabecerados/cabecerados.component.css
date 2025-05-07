@@ -1,0 +1,168 @@
+/* Font Awesome Icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 34px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+background: linear-gradient(to right, #b3cbff, #bde7f7, #bfd3f0, #85b6f7);
+
+
+    padding: 6.5px 10px;
+    color: #ffffff;
+    z-index: 1000;
+}
+
+/* Título con animación */
+.titulo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; /* Estilo delgado */
+    font-size: 55px; /* Tamaño base */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+    max-width: 90%; /* Para evitar que el texto se corte en pantallas pequeñas */
+    animation: shrinkGrow 12s infinite alternate, fadeInOut 12s infinite alternate; /* Múltiples animaciones */
+}
+
+/* Animación para hacer el texto más pequeño y volver a la normalidad */
+@keyframes shrinkGrow {
+    0% {
+        font-size: 0.9rem; /* Tamaño original */
+    }
+    50% {
+        font-size: 0.8rem; /* Un poco más pequeño */
+    }
+    100% {
+        font-size: 0.9rem; /* Vuelve al tamaño original */
+    }
+}
+
+
+
+
+
+/* Botón de ayuda */
+.btn-ayuda {
+    background-color: #395996; /* Rosa suave */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+}
+
+.btn-ayuda i {
+    font-size: 1.2rem;
+}
+
+.btn-ayuda:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 700px) {
+    .header {
+        position: fixed; /* ← antes era absolute */
+        top: 0;
+        left: 0;
+        height: 35px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right, #b3cbff, #bde7f7, #bfd3f0, #85b6f7);  z-index: 1001; /* ← más alto que el navbar si es necesario */
+    }
+    
+    .titulo {
+        font-size: 0.09rem; /* Ajuste para móviles */
+    }
+    .btn-ayuda {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .btn-ayuda span {
+        display: none;
+    }
+
+    .btn-ayuda i {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 850px) {
+    
+    .btn-ayuda {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .btn-ayuda span {
+        display: none;
+    }
+
+    .btn-ayuda i {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media print and (max-width: 799px) {
+    /* Sin márgenes en la hoja */
+    @page {
+      margin: 0;
+    }
+    .header {
+        visibility: hidden !important;
+    }
+  
+  /* Sin márgenes en la hoja */
+ 
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Oculta explícitamente header, nav, aside, footer, etc. */
+
+  nav,
+  aside,
+  .navbar,
+  .sidebar,
+  .menu,
+  .toolbar,
+  .ads,
+  .breadcrumb {
+    display: none !important;
+  }
+
+  
+    
+  
+  }

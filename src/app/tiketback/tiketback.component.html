@@ -1,0 +1,323 @@
+<div class="container">
+  <section class="form-card">
+    <h2>Crear / Editar Ticket</h2>
+    <form [formGroup]="form">
+      <div class="principal">
+      <label>Fecha
+        <input type="date" formControlName="fecha" />
+      </label>
+      <label>Lancha
+        <select formControlName="id_lancha">
+          <option value="">--Opcional--</option>
+          <option *ngFor="let l of lanchas" [value]="l.id">{{ l.nombre }} ({{ l.capacidad }})</option>
+        </select>
+      </label>
+      <label>Ruta
+        <select formControlName="id_ruta">
+          <option value="" disabled>--Seleccione--</option>
+          <option *ngFor="let r of rutas" [value]="r.id">{{ r.isla_salida }}→{{ r.isla_llegada }}</option>
+        </select>
+      </label>
+      <label>Horario
+        <select formControlName="id_horario">
+          <option value="" disabled>--Seleccione--</option>
+          <option *ngFor="let h of horarios" [value]="h.id">{{ h.hora_salida }}–{{ h.hora_llegada }}</option>
+        </select>
+      </label>
+      <label>Cédula Cliente
+        <input formControlName="cliente_cedula" (keydown.enter)="$event.preventDefault(); onCedulaEnter()" />
+      </label>
+      <label>Nombres
+        <input formControlName="nombres" />
+      </label>
+      <label>Apellidos
+        <input formControlName="apellidos" />
+      </label>     
+      <label>Cant. Pax
+        <input type="number" formControlName="asientos" />
+      </label>
+      <label>Estado
+        <select formControlName="estado">
+          <option value="valido">Válido</option>
+          <option value="usado">Usado</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
+      </label>
+
+    </div >
+      <div class="opcional">
+      <label>Equipaje
+        <input  formControlName="equipaje" />
+      </label>
+      <label>Servicios extra
+        <input formControlName="extras"  />
+      </label>
+      <label>Notas
+        <textarea formControlName="notas"></textarea>
+      </label>
+      </div>
+     
+      <button type="button" (click)="saveTiket(1)" [disabled]="form.invalid || loadingForm">Guardar Ticket</button>
+      <button type="button" (click)="saveTiket(2)" [disabled]="form.invalid || loadingForm">Guardar e Imprimir</button>
+      <button type="button" (click)="saveTiket(3)" [disabled]="form.invalid || loadingForm">Guardar y generar PDF</button>
+      
+    </form>
+  </section>
+
+  <section class="list-card">
+    <!-- BARRA DE BÚSQUEDA -->
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Buscar ID"
+        [(ngModel)]="searchId"
+        name="searchId"
+      />
+      <div class="tooltip-container">
+        <button (click)="search()">🔍</button>
+        <span class="tooltip-text">Buscar por ID</span>
+      </div>
+      <div class="tooltip-container">
+        <button (click)="searchcedula()">📄</button>
+        <span class="tooltip-text">Buscar por cédula</span>
+      </div>
+      <div class="tooltip-container">
+        <button (click)="loadList()">↺</button>
+        <span class="tooltip-text">Listar todos los tickets</span>
+      </div>
+    </div>
+  
+    <!-- TABLA DE TICKETS -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Viaje</th>
+            <th>Cant/Pax</th>
+            <th>Equipaje</th>
+            <th>Estado</th>
+            <th></th>    <!-- indicador de estado -->
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- usa pagedTikets para paginación -->
+          <tr *ngFor="let t of pagedTikets">
+            <td>{{ t.id }}</td>
+            <td>{{ t.cliente_cedula }}</td>
+            <td>{{ t.id_viaje }}</td>
+            <td>{{ t.asientos }}</td>
+            <td>{{ t.equipaje }}</td>
+            <td>{{ t.estado }}</td>
+            <td>
+              <span
+                class="status-circle"
+                [class.valid]="t.estado === 'valido'"
+                [class.invalid]="t.estado !== 'valido'"
+              ></span>
+            </td>
+            <td class="actions">
+              <button (click)="edit(t)">
+                ✏️<span class="tooltip">Editar ticket</span>
+              </button>
+              <button (click)="delete(t.id!)">
+                🗑️<span class="tooltip">Eliminar ticket</span>
+              </button>
+              <button (click)="agregarpasajero(t.id!)">
+                🧑‍🤝‍🧑<span class="tooltip">Agregar más personas</span>
+              </button>
+              <button (click)="printTicketf(t.id!)">
+                🖨️<span class="tooltip">Imprimir ticket</span>
+              </button>
+              <button (click)="generatePdf(t.id!)">
+                📄<span class="tooltip">Generar PDF</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- PÁGINOS DE CARGA / SIN DATOS -->
+    <div class="loading" *ngIf="loading">Cargando…</div>
+    <div class="no-data" *ngIf="!loading && tikets.length === 0">
+      No hay tickets.
+    </div>
+  
+    <!-- CONTROLES DE PAGINACIÓN -->
+    <div class="pagination" *ngIf="tikets.length > pageSize">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">
+        ← Anterior
+      </button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Siguiente →
+      </button>
+    </div>
+  </section>
+  
+
+
+
+
+
+
+
+  <div *ngIf="mostrarFormularioPasajero" class="popup-overlay">
+    <div class="popup-content" [formGroup]="formViajeros">
+      <h3>Formulario de Pasajeros (Ticket ID: {{ ticketIdSeleccionado }})</h3>
+  
+      <button class="btn btn-add" (click)="addPasajero()">+ Agregar pasajero</button>
+  
+      <div class="table-scroll-wrapper">
+        <div class="table-header">
+          <div>Cédula</div>
+          <div>Nombre</div>
+          <div>Apellido</div>
+          <div>Equipaje</div>
+          <div>Acción</div>
+        </div>
+      
+        <div class="table-body" formArrayName="tiket_usuario">
+          <div *ngFor="let grp of tiketUsuarioFA.controls; let i = index"
+               [formGroupName]="i"
+               class="table-row">
+            <input formControlName="cedula_usuario" />
+            <input formControlName="nombre_usuario" />
+            <input formControlName="apellido_usuario" />
+            <input formControlName="equipaje" />
+            <button class="btn btn-delete" (click)="removePasajero(i)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="btn-group">
+        <button class="btn btn-save" (click)="guardarPasajeros()" [disabled]="formViajeros.invalid">Guardar</button>
+        <button class="btn btn-cancel" (click)="cancelarFormulario()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+   <!-- Pase de embarque derecha -->
+   <div #ticketDiv class="boarding-pass">
+    <header class="bp-header">
+      <div class="bp-title">Pase de embarque</div>
+
+      <H1></H1>  <img src="logofinalfinall.png" alt="Logo Galápagos Andy 2" class="bp-logoprincipal">
+
+    </header>
+    <div class="bp-main">
+      <aside class="bp-qr">
+        <div class="seq">Seq. 1</div>
+        <img src="https://i.postimg.cc/QtXvDHfF/qr-actualizatec-400x400.png" alt="QR Code">
+      </aside>
+    
+      <!-- Muevo solo la fecha aquí -->
+      <div class="bp-date">
+        <div class="bp-reserv">
+          Código: 
+        </div>
+        <strong>GA2-04567</strong>
+        Miércoles, 23 de abril, 2025
+        
+      </div>
+      
+    </div>
+    
+    <!-- Ahora el resto baja por debajo, fuera de .bp-main -->
+    <section class="bp-boat">
+      <div class="bp-route">
+        <span class="code from">SCZ</span>
+        <span class="dot">• — •</span>
+        <span class="code to">ISA</span>
+      </div>
+      <div class="bp-times">
+        <div><small>Santa Cruz</small><strong>15:00 p.m.</strong></div>
+        <div><small>Isabela</small><strong>19:30 p.m.</strong></div>
+      </div>
+    </section>
+    
+    <div class="bp-details">
+      <div><label>Pasajero</label><span>Carmelinonator Carlosoto Pérezoso Ribadeneria</span></div>
+      <div><label>Cédula</label><span>1712345678</span></div>
+      <div><label>Equipaje</label><span>Sí</span></div>
+    </div>
+    <div class="bp-footer">
+     
+      <div><label>Muelle</label><span>A</span></div>
+      <div><label>Asientos</label><span>4</span></div>
+      <div><label>Lancha</label><span>Andy II</span></div>
+    </div>
+    <!-- Secciones extras SOLO debajo del ticket -->
+    <div class="bp-extras">
+      <h3>Equipaje incluido</h3>
+      <div class="extras-grid">
+        <div class="extraservices">
+          
+            <p>1 objeto personal (bajo asiento)</p>
+            <p>1 equipaje de mano estándar (55×40×25 cm)</p>
+            <p>Peso total ≤ 10 kg</p>
+         
+        </div>
+        <div class="extraservices">
+          <h3>Servicios opcionales</h3>
+          <p>Ninguno</p>
+          <p>Ninguno</p>
+          <p>Ninguno</p>
+        </div>
+      </div>
+    </div>
+    <div class="bp-timeline">
+      <h3>¡Llega a tiempo! Pasos antes del viaje</h3>
+      <div class="timeline-grid">
+        <div class="step">
+          <img src="https://i.postimg.cc/8zZGvY1s/llegadaf.jpg" alt="Muelle">
+          <strong>¡Llega al muelle!</strong>
+          <small>30 min antes</small>
+          <span>14:30 p.m.</span>
+        </div>
+        <div class="step">
+          <img src="https://i.postimg.cc/ncYpFzg4/chekf.jpg" alt="Check-in">
+          <strong>Check-in</strong>
+          <small>20 min antes</small>
+          <span>14:40 p.m.</span>
+        </div>
+        <div class="step">
+          <img src="https://i.postimg.cc/28fCNvcj/abordaf.jpg" alt="Embarque">
+          <strong>Embarque</strong>
+          <small>10 min antes</small>
+          <span>14:50 p.m.</span>
+        </div>
+        <div class="step">
+          <img src="https://i.postimg.cc/SxSqJ4bw/salidaf.jpg" alt="Salida">
+          <strong>Salida</strong>
+          <small>Hora programada</small>
+          <span>15:00 p.m.</span>
+        </div>
+      </div>
+    </div>
+    <footer class="bp-footer-promo">
+      <div class="promo-left">
+        <h4>Andy II Ferry Galápagos</h4>
+        <ul>
+          <li>Lancha de pasajeros ANDY II</li>
+          <li>Transporte marítimo interislas</li>
+          <li>Conoce Galápagos a bordo de una</li>
+          <li> embarcación cómoda y segura.</li>
+          <li>Traslados todos los días!</li>
+        </ul>
+      </div>
+      <div class="promo-right">
+        <h4>Contactos e informacion:</h4>
+        <div class="stores">
+          <a href="#"><img src="https://i.postimg.cc/QtXvDHfF/qr-actualizatec-400x400.png" alt="App Store"></a>
+        </div>
+        
+      </div>
+    </footer>
+  </div>
